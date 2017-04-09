@@ -1,0 +1,20 @@
+{
+  "dependencies": {
+    "mongoose": "^4.9.4",
+    "restify": "^4.3.0"
+  },
+  "name": "wine-api",
+  "version": "1.0.0",
+  "description": "A RESTful API for managing wines",
+  "main": "app.js",
+  "repository": "https://github.com/redtoad/wine-api",
+  "author": "Sebastian Rahlf <sebastian.rahlf@redtoad.de>",
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^3.19.0",
+    "eslint-config-standard": "^10.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-promise": "^3.5.0",
+    "eslint-plugin-standard": "^3.0.1"
+  }
+}
