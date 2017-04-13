@@ -10,7 +10,7 @@ var Wine = mongoose.model('Wine', {
   description: String
 });
 
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect(process.env.MONGODB_URI);
 
 var populateDB = function () {
   new Wine({ name: 'Pinot noir', year: 2011, country: 'France', type: 'red', description: 'Sensual and understated' }).save();
@@ -45,6 +45,6 @@ server.get('/wines', function (req, res, next) {
   });
 });
 
-server.listen(8080, function () {
+server.listen(process.env.PORT || 8080, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
