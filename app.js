@@ -1,6 +1,27 @@
 var mongoose = require('mongoose');
 var restify = require('restify');
 
+var connection = mongoose.connect(process.env.MONGODB_URI);
+
+mongoose.connection.on('connected', function () {
+  console.log('Mongoose default connection open to ' + process.env.MONGODB_URI);
+});
+
+mongoose.connection.on('error',function (err) {
+  console.log('Mongoose default connection error: ' + err);
+});
+
+mongoose.connection.on('disconnected', function () {
+  console.log('Mongoose default connection disconnected');
+});
+
+process.on('SIGINT', function() {
+  mongoose.connection.close(function () {
+    console.log('Mongoose default connection disconnected through app termination');
+    process.exit(0);
+  });
+});
+
 var Wine = mongoose.model('Wine', {
   id: mongoose.Schema.Types.ObjectId,
   name: String,
@@ -9,8 +30,6 @@ var Wine = mongoose.model('Wine', {
   type: String,
   description: String
 });
-
-mongoose.connect(process.env.MONGODB_URI);
 
 var populateDB = function () {
   new Wine({ name: 'Pinot noir', year: 2011, country: 'France', type: 'red', description: 'Sensual and understated' }).save();
