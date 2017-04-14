@@ -6,7 +6,7 @@ Version 1.0.0
 
 ## Endpoints
 
-Fee free to use the [corresponding POSTMAN collection](wines-api-postman.json).
+Feel free to use the [corresponding POSTMAN collection](wine-api.postman_collection).
 
 ### GET /wines/?year=<type>&type=<type>&name=<name>&country=<country>
 Returns a list of wine object which are stored in the database. Use the optional query parameters ``year``, ``type``, ``name`` and ``country`` to filter your results.
