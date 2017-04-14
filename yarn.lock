@@ -574,7 +574,7 @@ exit-hook@^1.0.0:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/exit-hook/-/exit-hook-1.1.1.tgz#f05ca233b48c05d54fff07765df8507e95c02ff8"
 
-extend@~3.0.0:
+extend@^3.0.0, extend@~3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/extend/-/extend-3.0.0.tgz#5a474353b9f3353ddd8176dfd37b91c83a46f1d4"
 
@@ -1112,6 +1112,12 @@ mongodb@2.2.25:
     mongodb-core "2.1.9"
     readable-stream "2.1.5"
 
+mongoose-auto-increment@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/mongoose-auto-increment/-/mongoose-auto-increment-5.0.1.tgz#827e051d9cc371dabe8bff1a704431d341cb79df"
+  dependencies:
+    extend "^3.0.0"
+
 mongoose@^4.9.4:
   version "4.9.4"
   resolved "https://registry.yarnpkg.com/mongoose/-/mongoose-4.9.4.tgz#212be4597e2db57b05286cc53ee894f30f3d8fad"
@@ -1502,10 +1508,6 @@ shelljs@^0.7.5:
     glob "^7.0.0"
     interpret "^1.0.0"
     rechoir "^0.6.2"
-
-sinon-mongoose@^1.3.0:
-  version "1.3.0"
-  resolved "https://registry.yarnpkg.com/sinon-mongoose/-/sinon-mongoose-1.3.0.tgz#2a2c75c36e9d7b665390f23fc7f91d548f580e45"
 
 sinon-test@^1.0.1:
   version "1.0.1"

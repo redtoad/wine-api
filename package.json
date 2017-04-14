@@ -5,6 +5,7 @@
     "hippie": "^0.5.1",
     "mocha": "^3.2.0",
     "mongoose": "^4.9.4",
+    "mongoose-auto-increment": "^5.0.1",
     "restify": "^4.3.0",
     "sinon": "^1.12.1",
     "sinon-test": "^1.0.1"
