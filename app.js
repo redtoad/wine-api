@@ -7,8 +7,11 @@ var http = require('http');
 var models = require('./lib/models');
 var server = require('./lib/server');
 
+const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/test';
+const PORT = process.env.PORT || 8080;
+
 mongoose.connection.on('connected', function () {
-  console.log('Mongoose default connection open to ' + process.env.MONGODB_URI);
+    console.log('Mongoose default connection open to ' + MONGODB_URI);
 });
 
 mongoose.connection.on('error',function (err) {
@@ -26,13 +29,8 @@ process.on('SIGINT', function() {
   });
 });
 
-mongoose.connect(process.env.MONGODB_URI);
+mongoose.connect(MONGODB_URI);
 
-var populateDB = function () {
-  new models.Wine({ name: 'Pinot noir', year: 2011, country: 'France', type: 'red', description: 'Sensual and understated' }).save();
-  new models.Wine({ name: 'Zinfandel', year: 1990, country: 'Croatia', type: 'red', description: 'Thick and jammy' }).save();
-};
-
-server.listen(process.env.PORT || 8080, function () {
+server.listen(PORT, function () {
   console.log('%s listening at %s', server.name, server.url);
 });
