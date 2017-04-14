@@ -68,16 +68,6 @@ describe('API', function () {
             });
         }));
 
-        // it('will not fail for missing optional fields', sinon.test(function (done) {
-        //   api().post('/wines')
-        //     .send({year: '2015', type: 'red', name: 'Wine', country: 'France'})
-        //     .expectStatus(200)
-        //     .end(function (err, res, body) {
-        //       assert.equal(body.error, undefined);
-        //       done();
-        //     });
-        // }));
-
         it('will fail for invalid type value', sinon.test(function (done) {
           api().post('/wines')
             .send({year: 2015, type: 'wrong', name: 'Wine', country: 'France'})
@@ -90,6 +80,7 @@ describe('API', function () {
         }));
 
       }));
+
     });
 
     describe('PUT update wines', function () {
@@ -99,9 +90,9 @@ describe('API', function () {
         this.stub(Wine.prototype, 'save', function mockSave (cb) { return this.validate(cb); });
 
         it('will fail for invalid type value', sinon.test(function (done) {
-            this.stub(Wine, 'findOne', function mockFindOne (opt, cb) {
-                cb(null, wineList[1]);
-            });
+          this.stub(Wine, 'findOne', function mockFindOne (opt, cb) {
+            cb(null, wineList[1]);
+          });
           api().put('/wines/15')
             .send({type: 'wrong'})
             .expectStatus(400)
@@ -114,6 +105,33 @@ describe('API', function () {
         }));
 
       }));
+
+      it('fails for non-existing wine', sinon.test(function (done) {
+        this.stub(Wine, 'findOne', function mockFindOne (opt, cb) { cb(null, null); });
+        api().put('/wines/666')
+          .send({year: 2015, type: 'wrong', name: 'Wine', country: 'France'})
+          .expectStatus(400)
+          .end(function (err, res, body) {
+            assert.equal(body.error, 'UNKNOWN_OBJECT');
+            done();
+          });
+  }));
+
+    });
+
+    describe('DELETE remove wines', function () {
+
+      it('fails for non-existing wine', sinon.test(function (done) {
+        this.stub(Wine, 'findOne', function mockFindOne (opt, cb) { cb(null, null); });
+        api().put('/wines/666')
+          .send({year: 2015, type: 'wrong', name: 'Wine', country: 'France'})
+          .expectStatus(400)
+          .end(function (err, res, body) {
+            assert.equal(body.error, 'UNKNOWN_OBJECT');
+            done();
+          });
+      }));
+
     });
 
   });
