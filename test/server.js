@@ -16,8 +16,8 @@ describe('API', function () {
   describe('/wines endpoint', function () {
 
     var wineList = [
-      new Wine({ id: 1, name: 'Pinot noir', year: 2011, country: 'France',  type: 'red', description: 'Sensual and understated'}),
-      new Wine({ id: 2, name: 'Zinfandel',  year: 1990, country: 'Croatia', type: 'red', description: 'Thick and jammy'})
+      new Wine({ id: 1, name: 'Pinot noir', year: 2011, country: 'France', type: 'red', description: 'Sensual and understated' }),
+      new Wine({ id: 2, name: 'Zinfandel', year: 1990, country: 'Croatia', type: 'red', description: 'Thick and jammy' })
     ];
 
     describe('GET list of wines', function () {
@@ -28,7 +28,7 @@ describe('API', function () {
           .expectStatus(200)
           .end(function (err, res, body) {
             if (err) throw err;
-              done();
+            done();
           });
       }));
 
@@ -36,7 +36,7 @@ describe('API', function () {
         this.stub(Wine, 'find', function mockFind (opt, cb) { cb(null, wineList); });
         api().get('/wines?something=')
           .expectStatus(200)
-          .end(function(err, res, body) {
+          .end(function (err, res, body) {
             if (err) throw err;
             assert.equal(body.length, 2);
             done();
@@ -59,6 +59,7 @@ describe('API', function () {
             .send({missing: 'everything'})
             .expectStatus(400)
             .end(function (err, res, body) {
+              if (err) throw err;
               assert.equal(body.error, 'VALIDATION_ERROR');
               assert.equal(body.validation.year, 'MISSING');
               assert.equal(body.validation.type, 'MISSING');
@@ -73,6 +74,7 @@ describe('API', function () {
             .send({year: 2015, type: 'wrong', name: 'Wine', country: 'France'})
             .expectStatus(400)
             .end(function (err, res, body) {
+              if (err) throw err;
               assert.equal(body.error, 'VALIDATION_ERROR');
               assert.equal(body.validation.type, 'INVALID');
               done();
@@ -97,6 +99,7 @@ describe('API', function () {
             .send({type: 'wrong'})
             .expectStatus(400)
             .end(function (err, res, body) {
+              if (err) throw err;
               assert.notEqual(body, undefined);
               assert.equal(body.error, 'VALIDATION_ERROR');
               assert.equal(body.validation.type, 'INVALID');
@@ -112,10 +115,11 @@ describe('API', function () {
           .send({year: 2015, type: 'wrong', name: 'Wine', country: 'France'})
           .expectStatus(400)
           .end(function (err, res, body) {
+            if (err) throw err;
             assert.equal(body.error, 'UNKNOWN_OBJECT');
             done();
           });
-  }));
+      }));
 
     });
 
@@ -127,6 +131,7 @@ describe('API', function () {
           .send({year: 2015, type: 'wrong', name: 'Wine', country: 'France'})
           .expectStatus(400)
           .end(function (err, res, body) {
+            if (err) throw err;
             assert.equal(body.error, 'UNKNOWN_OBJECT');
             done();
           });
