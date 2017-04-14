@@ -18,6 +18,7 @@
   "author": "Sebastian Rahlf <sebastian.rahlf@redtoad.de>",
   "license": "MIT",
   "scripts": {
+    "server": "node app.js",
     "test": "mocha test --recursive"
   },
   "devDependencies": {

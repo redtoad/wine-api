@@ -1,0 +1,70 @@
+{
+	"variables": [],
+	"info": {
+		"name": "tresmo Wine API",
+		"_postman_id": "abc7ee06-5cad-ce76-b184-0daca4c00e66",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "list of all wines",
+			"request": {
+				"url": "https://wine-api.herokuapp.com/wines",
+				"method": "GET",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Add a new wine",
+			"request": {
+				"url": "https://wine-api.herokuapp.com/wines",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r   \"name\": \"Cabernet sauvignon\",\r   \"year\": 2013,\r   \"country\": \"France\",\r   \"type\": \"red\",\r   \"description\": \"The Sean Connery of red wines\"\r}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Update a wine",
+			"request": {
+				"url": "https://wine-api.herokuapp.com/wines/3",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a wine",
+			"request": {
+				"url": "https://wine-api.herokuapp.com/wines/12",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
